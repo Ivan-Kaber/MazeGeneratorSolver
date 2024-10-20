@@ -40,6 +40,11 @@ public class Maze {
         return (getCell(coordinate.row(), coordinate.col()).type() == Cell.Type.PASSAGE);
     }
 
+    public void addStartAndGoalPoint(Coordinate start, Coordinate goal) {
+        setCellType(start, Cell.Type.START);
+        setCellType(goal, Cell.Type.GOAL);
+    }
+
     private void setWallsInMaze() {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
