@@ -21,7 +21,9 @@ public class ConsoleLogic {
     private Generator generator;
     private Maze maze;
     private final Renderer renderer;
+    @Getter
     private Coordinate start;
+    @Getter
     private Coordinate goal;
     @Getter
     private static int heightSize;
