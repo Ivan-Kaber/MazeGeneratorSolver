@@ -44,7 +44,7 @@ public class RecursiveBacktrackGenerator implements Generator {
             }
         }
         addRandomCycles(maze);
-        //MazeDecorator.addRandomSurfacesToPassages(maze);
+        MazeDecorator.addRandomSurfacesToPassages(maze);
 
         return maze;
     }
