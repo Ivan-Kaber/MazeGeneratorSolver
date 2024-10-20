@@ -28,6 +28,7 @@ public class AStarSolver extends AbstractSolver {
         while (!openSet.isEmpty()) {
             Node currentNode = openSet.poll();
             if (currentNode.coordinate().equals(goal)) {
+                maze.addStartAndGoalPoint(start, goal);
                 return constructPath(currentNode);
             }
 

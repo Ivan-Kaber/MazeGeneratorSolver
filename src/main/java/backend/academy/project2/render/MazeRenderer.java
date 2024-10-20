@@ -24,7 +24,7 @@ public class MazeRenderer implements Renderer {
         for (int row = 0; row < maze.height(); row++) {
             for (int col = 0; col < maze.width(); col++) {
                 Cell cell = maze.getCell(row, col);
-                if (path.contains(new Coordinate(row, col))) {
+                if (path.contains(new Coordinate(row, col)) && cell.type() != Cell.Type.START && cell.type() != Cell.Type.GOAL) {
                     sb.append("🟩");
                 } else {
                     sb.append(getSymbol(cell.type()));

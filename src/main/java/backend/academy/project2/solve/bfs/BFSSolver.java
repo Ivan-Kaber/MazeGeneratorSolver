@@ -29,6 +29,7 @@ public class BFSSolver extends AbstractSolver {
             Node currentNode = queue.poll();
 
             if (currentNode.coordinate().equals(goal)) {
+                maze.addStartAndGoalPoint(start, goal);
                 return constructPath(currentNode);
             }
 
