@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public enum Place {
     UP_LEFT(new Coordinate(1, 1), "Слева сверху"),
-    UP_RIGHT(new Coordinate(1, ConsoleLogic.widthSize() - 2), "Справа сверху"),
-    DOWN_LEFT(new Coordinate(ConsoleLogic.heightSize() - 2, 1), "Слева снизу"),
-    DOWN_RIGHT(new Coordinate(ConsoleLogic.heightSize() - 2, ConsoleLogic.widthSize() - 2), "Справа снизу");
+    UP_RIGHT(new Coordinate(1, Maze.width() - 2), "Справа сверху"),
+    DOWN_LEFT(new Coordinate(Maze.height() - 2, 1), "Слева снизу"),
+    DOWN_RIGHT(new Coordinate(Maze.height() - 2, Maze.width() - 2), "Справа снизу");
 
     private final int id;
     private final Coordinate coordinate;
