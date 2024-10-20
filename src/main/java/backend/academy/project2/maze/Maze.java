@@ -2,17 +2,18 @@ package backend.academy.project2.maze;
 
 import lombok.Getter;
 
-@Getter
 public class Maze {
-    public static final int minSize = 5;
-    public static final int maxSize = 47;
-    private final int height;
-    private final int width;
+    public static final int MIN_SIZE = 5;
+    public static final int MAX_SIZE = 47;
+    @Getter
+    private static int height;
+    @Getter
+    private static int width;
     private final Cell[][] grid;
 
     public Maze(int height, int width) {
-        this.height = height;
-        this.width = width;
+        Maze.height = height;
+        Maze.width = width;
         this.grid = new Cell[height][width];
 
         setWallsInMaze();
