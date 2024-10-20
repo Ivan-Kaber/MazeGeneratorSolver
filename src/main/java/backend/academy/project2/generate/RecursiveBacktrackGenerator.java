@@ -4,6 +4,7 @@ import backend.academy.project2.maze.Cell;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Direction;
 import backend.academy.project2.maze.Maze;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class RecursiveBacktrackGenerator implements Generator {
         Maze maze = new Maze(height, width);
 
         Coordinate startCoordinate = new Coordinate(random.nextInt(height / 2) * 2 + 1,
-            random.nextInt(width / 2) * 2 + 1);
+                random.nextInt(width / 2) * 2 + 1);
 
         stack.push(startCoordinate);
         while (!stack.isEmpty()) {
@@ -36,7 +37,7 @@ public class RecursiveBacktrackGenerator implements Generator {
 
                 // Удаляем стену между текущей ячейкой и выбранной
                 maze.setCellType(new Coordinate(currentCell.row() + randomUnvisitedNeighbor.rowOffset(),
-                    currentCell.col() + randomUnvisitedNeighbor.colOffset()), Cell.Type.PASSAGE);
+                        currentCell.col() + randomUnvisitedNeighbor.colOffset()), Cell.Type.PASSAGE);
 
                 maze.setCellType(neighbor, Cell.Type.PASSAGE);
 
@@ -50,8 +51,8 @@ public class RecursiveBacktrackGenerator implements Generator {
     }
 
     private void addRandomCycles(Maze maze) {
-        for (int row = 1; row < maze.height() - 1; row++) {
-            for (int col = 1; col < maze.width() - 1; col++) {
+        for (int row = 1; row < Maze.height() - 1; row++) {
+            for (int col = 1; col < Maze.width() - 1; col++) {
                 if (maze.getCell(row, col).type() == Cell.Type.WALL) {
                     List<Direction> passageNeighbors = getPassageNeighbors(maze, new Coordinate(row, col));
                     if (passageNeighbors.size() > 1 && random.nextDouble() < PROBABILITY) {
@@ -66,8 +67,8 @@ public class RecursiveBacktrackGenerator implements Generator {
         List<Direction> passageNeighbors = new ArrayList<>();
         for (Direction direction : Direction.values()) {
             Coordinate newCoordinate = new Coordinate(
-                cell.row() + direction.rowOffset(),
-                cell.col() + direction.colOffset());
+                    cell.row() + direction.rowOffset(),
+                    cell.col() + direction.colOffset());
             if (maze.isWithinBounds(newCoordinate) && maze.isPassage(newCoordinate)) {
                 passageNeighbors.add(direction);
             }
@@ -79,8 +80,8 @@ public class RecursiveBacktrackGenerator implements Generator {
         List<Direction> unvisitedNeighbors = new ArrayList<>();
         for (Direction direction : Direction.values()) {
             Coordinate newCoordinate = new Coordinate(
-                cell.row() + direction.rowOffset() * 2,
-                cell.col() + direction.colOffset() * 2
+                    cell.row() + direction.rowOffset() * 2,
+                    cell.col() + direction.colOffset() * 2
             );
 
             if (maze.isWithinBounds(newCoordinate) && maze.isWall(newCoordinate)) {
@@ -92,7 +93,7 @@ public class RecursiveBacktrackGenerator implements Generator {
 
     private Coordinate getNeighbor(Coordinate cell, Direction direction) {
         return new Coordinate(cell.row() + direction.rowOffset() * 2,
-            cell.col() + direction.colOffset() * 2);
+                cell.col() + direction.colOffset() * 2);
     }
 }
 

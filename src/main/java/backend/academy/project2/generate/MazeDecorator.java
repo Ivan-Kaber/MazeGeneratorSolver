@@ -11,8 +11,8 @@ public class MazeDecorator {
     private static final int BOOST_CHANCE = 10;
 
     static void addRandomSurfacesToPassages(Maze maze) {
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
+        for (int row = 0; row < Maze.height(); row++) {
+            for (int col = 0; col < Maze.width(); col++) {
                 if (maze.getCell(row, col).type() == Cell.Type.PASSAGE) {
                     maze.setCellType(new Coordinate(row, col), randomSurface());
                 }
@@ -22,8 +22,12 @@ public class MazeDecorator {
 
     private static Cell.Type randomSurface() {
         int chance = RANDOM.nextInt(100);
-        if (chance < BARRIER_CHANCE) return Cell.Type.BARRIER;
-        if (chance < (BOOST_CHANCE + BARRIER_CHANCE)) return Cell.Type.BOOST;
+        if (chance < BARRIER_CHANCE) {
+            return Cell.Type.BARRIER;
+        }
+        if (chance < (BOOST_CHANCE + BARRIER_CHANCE)) {
+            return Cell.Type.BOOST;
+        }
         return Cell.Type.PASSAGE;
     }
 }

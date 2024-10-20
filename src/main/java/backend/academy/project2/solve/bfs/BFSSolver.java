@@ -33,8 +33,8 @@ public class BFSSolver extends AbstractSolver {
                 return constructPath(currentNode);
             }
 
-            for(Coordinate neighbor: getValidNeighbors(currentNode.coordinate())) {
-                if(!maze.isWall(neighbor) && !visited.containsKey(neighbor)) {
+            for (Coordinate neighbor : getValidNeighbors(currentNode.coordinate())) {
+                if (!maze.isWall(neighbor) && !visited.containsKey(neighbor)) {
                     Node neighborNode = new Node(neighbor, currentNode);
                     queue.add(neighborNode);
                     visited.put(neighbor, neighborNode);

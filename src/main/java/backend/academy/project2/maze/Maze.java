@@ -29,8 +29,8 @@ public class Maze {
     }
 
     public boolean isWithinBounds(Coordinate coordinate) {
-        return coordinate.row() > 0 && coordinate.row() < this.height - 1 &&
-               coordinate.col() > 0 && coordinate.col() < this.width - 1;
+        return coordinate.row() > 0 && coordinate.row() < height - 1 &&
+               coordinate.col() > 0 && coordinate.col() < width - 1;
     }
 
     public boolean isWall(Coordinate coordinate) {

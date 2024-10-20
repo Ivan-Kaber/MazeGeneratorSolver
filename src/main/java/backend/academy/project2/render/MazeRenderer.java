@@ -9,8 +9,8 @@ public class MazeRenderer implements Renderer {
     @Override
     public String render(Maze maze) {
         StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
+        for (int row = 0; row < Maze.height(); row++) {
+            for (int col = 0; col < Maze.width(); col++) {
                 sb.append(getSymbol(maze.getCell(row, col).type()));
             }
             sb.append("\n");
@@ -21,10 +21,12 @@ public class MazeRenderer implements Renderer {
     @Override
     public String render(Maze maze, List<Coordinate> path) {
         StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
+        for (int row = 0; row < Maze.height(); row++) {
+            for (int col = 0; col < Maze.width(); col++) {
                 Cell cell = maze.getCell(row, col);
-                if (path.contains(new Coordinate(row, col)) && cell.type() != Cell.Type.START && cell.type() != Cell.Type.GOAL) {
+                if (path.contains(new Coordinate(row, col)) &&
+                    cell.type() != Cell.Type.START &&
+                    cell.type() != Cell.Type.GOAL) {
                     sb.append("🟩");
                 } else {
                     sb.append(getSymbol(cell.type()));

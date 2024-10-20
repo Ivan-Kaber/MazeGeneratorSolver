@@ -46,7 +46,6 @@ public class PrimGenerator implements Generator {
         }
     }
 
-
     private Coordinate getAdjacentPassage(Maze maze, Coordinate wall) {
         int passageCount = 0;
         Coordinate passage = null;
@@ -66,8 +65,8 @@ public class PrimGenerator implements Generator {
 
     private void cleanCorners(Maze maze) {
         maze.setCellType(new Coordinate(1, 1), Cell.Type.PASSAGE);
-        maze.setCellType(new Coordinate(1, maze.width() - 2), Cell.Type.PASSAGE);
-        maze.setCellType(new Coordinate(maze.height() - 2, 1), Cell.Type.PASSAGE);
-        maze.setCellType(new Coordinate(maze.height() - 2, maze.width() - 2), Cell.Type.PASSAGE);
+        maze.setCellType(new Coordinate(1, Maze.width() - 2), Cell.Type.PASSAGE);
+        maze.setCellType(new Coordinate(Maze.height() - 2, 1), Cell.Type.PASSAGE);
+        maze.setCellType(new Coordinate(Maze.height() - 2, Maze.width() - 2), Cell.Type.PASSAGE);
     }
 }

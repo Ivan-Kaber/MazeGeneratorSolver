@@ -3,6 +3,7 @@ package backend.academy.project2.solve;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Direction;
 import backend.academy.project2.maze.Maze;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,8 +39,8 @@ public abstract class AbstractSolver implements Solver {
 
         for (Direction direction : Direction.values()) {
             Coordinate newCoordinate = new Coordinate(
-                coordinate.row() + direction.rowOffset(),
-                coordinate.col() + direction.colOffset());
+                    coordinate.row() + direction.rowOffset(),
+                    coordinate.col() + direction.colOffset());
             if (maze.isWithinBounds(newCoordinate)) {
                 neighbors.add(newCoordinate);
             }

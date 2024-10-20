@@ -2,7 +2,6 @@ package backend.academy.project2.interaction;
 
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Maze;
-import org.checkerframework.checker.units.qual.C;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

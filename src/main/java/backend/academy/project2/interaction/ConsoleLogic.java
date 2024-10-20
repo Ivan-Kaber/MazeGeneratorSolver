@@ -5,13 +5,13 @@ import backend.academy.project2.generate.GeneratorFactory;
 import backend.academy.project2.generate.GeneratorType;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Maze;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.Scanner;
 import backend.academy.project2.render.MazeRenderer;
 import backend.academy.project2.render.Renderer;
 import backend.academy.project2.solve.SolverFactory;
 import backend.academy.project2.solve.SolverType;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.Scanner;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,7 +27,6 @@ public class ConsoleLogic {
     private static int heightSize;
     @Getter
     private static int widthSize;
-
 
     public ConsoleLogic(PrintStream out, Scanner scanner) {
         this.out = out;
@@ -46,18 +45,17 @@ public class ConsoleLogic {
     }
 
     public void selectSize(String size, boolean isHeight) {
-        if (StringUtils.isNumeric(size) && Integer.parseInt(size) >= Maze.MIN_SIZE && Integer.parseInt(size) <= Maze.MAX_SIZE) {
-            if(isHeight) {
+        if (StringUtils.isNumeric(size) && Integer.parseInt(size) >= Maze.MIN_SIZE &&
+            Integer.parseInt(size) <= Maze.MAX_SIZE) {
+            if (isHeight) {
                 heightSize = Integer.parseInt(size);
-            }
-            else {
+            } else {
                 widthSize = Integer.parseInt(size);
             }
-        }
-        else {
+        } else {
             out.printf("""
-                      Вы ввели неверные данные, попробуйте еще раз, \
-                      введите значение размерности лабиринта в диапазоне от %d до %d:\s""", Maze.MIN_SIZE, Maze.MAX_SIZE);
+                Вы ввели неверные данные, попробуйте еще раз, \
+                введите значение размерности лабиринта в диапазоне от %d до %d:\s""", Maze.MIN_SIZE, Maze.MAX_SIZE);
             selectSize(scanner.nextLine(), isHeight);
         }
     }
@@ -68,15 +66,13 @@ public class ConsoleLogic {
     }
 
     public void selectStartOrGoalPoint(String place, boolean isStart) {
-        if(Place.contains(place)) {
-            if(isStart) {
+        if (Place.contains(place)) {
+            if (isStart) {
                 start = Place.getById(Integer.parseInt(place));
-            }
-            else {
+            } else {
                 goal = Place.getById(Integer.parseInt(place));
             }
-        }
-        else {
+        } else {
             out.print("Вы ввели неверные данные, "
                       + "попробуйте еще раз, введите одну цифру - желаемую точку в лабиринте: ");
             selectStartOrGoalPoint(scanner.nextLine(), isStart);
@@ -84,17 +80,16 @@ public class ConsoleLogic {
     }
 
     public void selectSolver(String solver) {
-        if(SolverType.contains(solver)) {
-            List<Coordinate> path = SolverFactory.createSolver(SolverType.getById(Integer.parseInt(solver)), maze, start, goal).solve();
-            if(!path.isEmpty()) {
+        if (SolverType.contains(solver)) {
+            List<Coordinate> path =
+                SolverFactory.createSolver(SolverType.getById(Integer.parseInt(solver)), maze, start, goal).solve();
+            if (!path.isEmpty()) {
                 out.println(renderer.render(maze, path));
                 out.println("Путь найден!");
-            }
-            else {
+            } else {
                 out.println("Путь не найден!");
             }
-        }
-        else {
+        } else {
             out.print("Вы ввели неверные данные, "
                       + "попробуйте еще раз, введите одну цифру - желаемый алгоритм: ");
             selectSolver(scanner.nextLine());
