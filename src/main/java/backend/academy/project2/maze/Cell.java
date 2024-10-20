@@ -9,7 +9,9 @@ public record Cell(int row, int col, Type type) {
         WALL(Integer.MAX_VALUE, "⬜️"),
         BARRIER(4, "\uD83D\uDC94"),
         PASSAGE(2, "⬛️"),
-        BOOST(0, "\uD83D\uDC8E");
+        BOOST(0, "\uD83D\uDC8E"),
+        START(0, "🅰️"),
+        GOAL(0, "🅱️");
 
         private final int cost;
         private final String symbol;
