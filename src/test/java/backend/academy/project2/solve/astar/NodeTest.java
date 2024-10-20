@@ -64,7 +64,7 @@ class NodeTest {
     void testParentSetter() {
         Coordinate parentCoordinate = new Coordinate(0, 1);
         Node parentNode = new Node(parentCoordinate);
-        node.parent(parentNode);
+        node.setParent(parentNode);
 
         assertEquals(parentNode, node.parent());
         assertEquals(parentCoordinate, node.parent().coordinate());
@@ -72,7 +72,7 @@ class NodeTest {
 
     @Test
     void testParentSetterNull() {
-        node.parent(null);
+        node.setParent(null);
         assertNull(node.parent());
     }
 

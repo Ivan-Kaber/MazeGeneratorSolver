@@ -7,11 +7,14 @@ import lombok.Setter;
 @Getter
 public abstract class AbstractNode<T extends AbstractNode<T>> {
     protected Coordinate coordinate;
-    @Setter
     protected T parent;
 
     public AbstractNode(Coordinate coordinate, T parent) {
         this.coordinate = coordinate;
+        this.parent = parent;
+    }
+
+    public void setParent(T parent) {
         this.parent = parent;
     }
 }
