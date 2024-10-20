@@ -19,8 +19,8 @@ class MazeTest {
 
     @Test
     void testMazeDimensions() {
-        assertEquals(5, Maze.height());
-        assertEquals(5, Maze.width());
+        assertEquals(5, maze.height());
+        assertEquals(5, maze.width());
     }
 
     @Test
@@ -73,8 +73,8 @@ class MazeTest {
     @Test
     void testSetWallsInMaze() {
         // Проверяем, что все ячейки инициализировались как стены
-        for (int row = 0; row < Maze.height(); row++) {
-            for (int col = 0; col < Maze.width(); col++) {
+        for (int row = 0; row < maze.height(); row++) {
+            for (int col = 0; col < maze.width(); col++) {
                 assertEquals(Cell.Type.WALL, maze.getCell(row, col).type());
             }
         }
@@ -83,8 +83,8 @@ class MazeTest {
     @Test
     void testCellInitialization() {
         // Проверяем, что ячейки инициализируются с правильными координатами и типами
-        for (int row = 0; row < Maze.height(); row++) {
-            for (int col = 0; col < Maze.width(); col++) {
+        for (int row = 0; row < maze.height(); row++) {
+            for (int col = 0; col < maze.width(); col++) {
                 Cell cell = maze.getCell(row, col);
                 assertEquals(row, cell.row());
                 assertEquals(col, cell.col());

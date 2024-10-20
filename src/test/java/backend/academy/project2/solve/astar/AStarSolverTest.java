@@ -19,8 +19,8 @@ class AStarSolverTest {
     @BeforeEach
     void setUp() {
         maze = new Maze(5, 5);
-        for (int row = 0; row < Maze.height(); row++) {
-            for (int col = 0; col < Maze.width(); col++) {
+        for (int row = 0; row < maze.height(); row++) {
+            for (int col = 0; col < maze.width(); col++) {
                 maze.setCellType(new Coordinate(row, col), Cell.Type.WALL);
             }
         }

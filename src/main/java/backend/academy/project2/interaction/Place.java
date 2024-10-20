@@ -1,25 +1,32 @@
 package backend.academy.project2.interaction;
 
 import backend.academy.project2.maze.Coordinate;
-import backend.academy.project2.maze.Maze;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public enum Place {
     UP_LEFT(new Coordinate(1, 1), "Слева сверху"),
-    UP_RIGHT(new Coordinate(1, Maze.width() - 2), "Справа сверху"),
-    DOWN_LEFT(new Coordinate(Maze.height() - 2, 1), "Слева снизу"),
-    DOWN_RIGHT(new Coordinate(Maze.height() - 2, Maze.width() - 2), "Справа снизу");
+    UP_RIGHT(new Coordinate(1, 1), "Справа сверху"),
+    DOWN_LEFT(new Coordinate(1, 1), "Слева снизу"),
+    DOWN_RIGHT(new Coordinate(1, 1), "Справа снизу");
 
     private final int id;
-    private final Coordinate coordinate;
     private final String description;
+    private Coordinate coordinate;
 
     Place(Coordinate coordinate, String description) {
         this.id = ordinal() + 1;
         this.coordinate = coordinate;
         this.description = description;
     }
+
+    public static void setMazeDimensions(int height, int width) {
+        UP_LEFT.coordinate = new Coordinate(1, 1);
+        UP_RIGHT.coordinate = new Coordinate(1, width - 2);
+        DOWN_LEFT.coordinate = new Coordinate(height - 2, 1);
+        DOWN_RIGHT.coordinate = new Coordinate(height - 2, width - 2);
+    }
+
 
     public static String getOrderView() {
         return Arrays.stream(values())

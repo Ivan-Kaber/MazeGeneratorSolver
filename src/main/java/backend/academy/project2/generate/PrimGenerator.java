@@ -4,12 +4,12 @@ import backend.academy.project2.maze.Cell;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Direction;
 import backend.academy.project2.maze.Maze;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class PrimGenerator implements Generator {
-    private final Random random = new Random();
+    private final SecureRandom random = new SecureRandom();
     private final List<Coordinate> walls = new ArrayList<>();
 
     @Override
@@ -65,8 +65,8 @@ public class PrimGenerator implements Generator {
 
     private void cleanCorners(Maze maze) {
         maze.setCellType(new Coordinate(1, 1), Cell.Type.PASSAGE);
-        maze.setCellType(new Coordinate(1, Maze.width() - 2), Cell.Type.PASSAGE);
-        maze.setCellType(new Coordinate(Maze.height() - 2, 1), Cell.Type.PASSAGE);
-        maze.setCellType(new Coordinate(Maze.height() - 2, Maze.width() - 2), Cell.Type.PASSAGE);
+        maze.setCellType(new Coordinate(1, maze.width() - 2), Cell.Type.PASSAGE);
+        maze.setCellType(new Coordinate(maze.height() - 2, 1), Cell.Type.PASSAGE);
+        maze.setCellType(new Coordinate(maze.height() - 2, maze.width() - 2), Cell.Type.PASSAGE);
     }
 }

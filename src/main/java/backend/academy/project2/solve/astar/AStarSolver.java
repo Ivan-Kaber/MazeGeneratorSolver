@@ -18,15 +18,15 @@ public class AStarSolver extends AbstractSolver {
 
     @Override
     public List<Coordinate> solve() {
-        PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingDouble(Node::f));
+        PriorityQueue<Node> nodePriorityQueue = new PriorityQueue<>(Comparator.comparingDouble(Node::f));
         Map<Coordinate, Node> allNodes = new HashMap<>();
 
         Node startNode = new Node(start, null, 0, heuristic(start, goal));
-        openSet.add(startNode);
+        nodePriorityQueue.add(startNode);
         allNodes.put(start, startNode);
 
-        while (!openSet.isEmpty()) {
-            Node currentNode = openSet.poll();
+        while (!nodePriorityQueue.isEmpty()) {
+            Node currentNode = nodePriorityQueue.poll();
             if (currentNode.coordinate().equals(goal)) {
                 maze.addStartAndGoalPoint(start, goal);
                 return constructPath(currentNode);
@@ -44,8 +44,8 @@ public class AStarSolver extends AbstractSolver {
                     neighborNode.setH(heuristic(neighbor, goal));
                     neighborNode.setParent(currentNode);
 
-                    if (!openSet.contains(neighborNode)) {
-                        openSet.add(neighborNode);
+                    if (!nodePriorityQueue.contains(neighborNode)) {
+                        nodePriorityQueue.add(neighborNode);
                     }
                     allNodes.put(neighbor, neighborNode);
                 }

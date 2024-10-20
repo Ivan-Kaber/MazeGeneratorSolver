@@ -26,9 +26,9 @@ public class ConsoleLogic {
     @Getter
     private Coordinate goal;
     @Getter
-    private static int heightSize;
+    private int heightSize;
     @Getter
-    private static int widthSize;
+    private int widthSize;
 
     public ConsoleLogic(PrintStream out, Scanner scanner) {
         this.out = out;
@@ -40,15 +40,15 @@ public class ConsoleLogic {
         if (GeneratorType.contains(choiceAlgorithm)) {
             generator = GeneratorFactory.createGenerator(GeneratorType.getById(Integer.parseInt(choiceAlgorithm)));
         } else {
-            out.print("Вы ввели неверные данные, "
-                      + "попробуйте еще раз, введите одну цифру - желаемый алгоритм: ");
+            out.print("Вы ввели неверные данные, попробуйте еще раз,"
+                      + " введите одну цифру - желаемый алгоритм: ");
             selectAlgorithm(scanner.nextLine());
         }
     }
 
     public void selectSize(String size, boolean isHeight) {
-        if (StringUtils.isNumeric(size) && Integer.parseInt(size) >= Maze.MIN_SIZE &&
-            Integer.parseInt(size) <= Maze.MAX_SIZE) {
+        if (StringUtils.isNumeric(size) && Integer.parseInt(size) >= Maze.MIN_SIZE
+            && Integer.parseInt(size) <= Maze.MAX_SIZE) {
             if (isHeight) {
                 heightSize = Integer.parseInt(size);
             } else {
@@ -65,6 +65,7 @@ public class ConsoleLogic {
     public void drawMaze() {
         maze = generator.generate(heightSize, widthSize);
         out.println("\n" + renderer.render(maze));
+        Place.setMazeDimensions(maze.height(), maze.width());
     }
 
     public void selectStartOrGoalPoint(String place, boolean isStart) {
@@ -75,8 +76,8 @@ public class ConsoleLogic {
                 goal = Place.getById(Integer.parseInt(place));
             }
         } else {
-            out.print("Вы ввели неверные данные, "
-                      + "попробуйте еще раз, введите одну цифру - желаемую точку в лабиринте: ");
+            out.print("Вы ввели неверные данные, попробуйте еще раз, введите одну цифру"
+                      + " - желаемую точку в лабиринте: ");
             selectStartOrGoalPoint(scanner.nextLine(), isStart);
         }
     }

@@ -4,33 +4,39 @@ import backend.academy.project2.maze.Cell;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Direction;
 import backend.academy.project2.maze.Maze;
-
+import java.security.SecureRandom;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Random;
-import java.util.Stack;
 
 public class RecursiveBacktrackGenerator implements Generator {
-    private final Random random = new Random();
-    private final Stack<Coordinate> stack = new Stack<>();
+    private final SecureRandom random = new SecureRandom();
+    private final Deque<Coordinate> coordinates = new ArrayDeque<>();
     private static final double PROBABILITY = 0.2;
 
     @Override
     public Maze generate(int height, int width) {
-        if (height % 2 == 0) height++;
-        if (width % 2 == 0) width++;
-        Maze maze = new Maze(height, width);
+        int newHeight = height;
+        if (newHeight % 2 == 0) {
+            newHeight++;
+        }
+        int newWidth = width;
+        if (newWidth % 2 == 0) {
+            newWidth++;
+        }
+        Maze maze = new Maze(newHeight, newWidth);
 
         Coordinate startCoordinate = new Coordinate(random.nextInt(height / 2) * 2 + 1,
                 random.nextInt(width / 2) * 2 + 1);
 
-        stack.push(startCoordinate);
-        while (!stack.isEmpty()) {
-            Coordinate currentCell = stack.pop();
+        coordinates.push(startCoordinate);
+        while (!coordinates.isEmpty()) {
+            Coordinate currentCell = coordinates.pop();
 
             List<Direction> unvisitedNeighbors = getUnvisitedNeighbors(maze, currentCell);
             if (!unvisitedNeighbors.isEmpty()) {
-                stack.push(currentCell);
+                coordinates.push(currentCell);
 
                 Direction randomUnvisitedNeighbor = unvisitedNeighbors.get(random.nextInt(unvisitedNeighbors.size()));
                 Coordinate neighbor = getNeighbor(currentCell, randomUnvisitedNeighbor);
@@ -41,7 +47,7 @@ public class RecursiveBacktrackGenerator implements Generator {
 
                 maze.setCellType(neighbor, Cell.Type.PASSAGE);
 
-                stack.push(neighbor);
+                coordinates.push(neighbor);
             }
         }
         addRandomCycles(maze);
@@ -51,8 +57,8 @@ public class RecursiveBacktrackGenerator implements Generator {
     }
 
     private void addRandomCycles(Maze maze) {
-        for (int row = 1; row < Maze.height() - 1; row++) {
-            for (int col = 1; col < Maze.width() - 1; col++) {
+        for (int row = 1; row < maze.height() - 1; row++) {
+            for (int col = 1; col < maze.width() - 1; col++) {
                 if (maze.getCell(row, col).type() == Cell.Type.WALL) {
                     List<Direction> passageNeighbors = getPassageNeighbors(maze, new Coordinate(row, col));
                     if (passageNeighbors.size() > 1 && random.nextDouble() < PROBABILITY) {

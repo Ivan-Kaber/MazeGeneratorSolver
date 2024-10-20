@@ -6,14 +6,14 @@ public class Maze {
     public static final int MIN_SIZE = 5;
     public static final int MAX_SIZE = 47;
     @Getter
-    private static int height;
+    private final int height;
     @Getter
-    private static int width;
+    private final int width;
     private final Cell[][] grid;
 
     public Maze(int height, int width) {
-        Maze.height = height;
-        Maze.width = width;
+        this.height = height;
+        this.width = width;
         this.grid = new Cell[height][width];
 
         setWallsInMaze();
@@ -29,8 +29,8 @@ public class Maze {
     }
 
     public boolean isWithinBounds(Coordinate coordinate) {
-        return coordinate.row() > 0 && coordinate.row() < height - 1 &&
-               coordinate.col() > 0 && coordinate.col() < width - 1;
+        return coordinate.row() > 0 && coordinate.row() < height - 1
+               && coordinate.col() > 0 && coordinate.col() < width - 1;
     }
 
     public boolean isWall(Coordinate coordinate) {

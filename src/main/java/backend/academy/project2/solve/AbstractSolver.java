@@ -3,7 +3,6 @@ package backend.academy.project2.solve;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Direction;
 import backend.academy.project2.maze.Maze;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,9 +25,10 @@ public abstract class AbstractSolver implements Solver {
 
     protected <T extends AbstractNode<T>> List<Coordinate> constructPath(T node) {
         List<Coordinate> path = new ArrayList<>();
-        while (node != null) {
-            path.add(node.coordinate());
-            node = node.parent();
+        T currentNode = node;
+        while (currentNode != null) {
+            path.add(currentNode.coordinate());
+            currentNode = currentNode.parent();
         }
         Collections.reverse(path);
         return path;

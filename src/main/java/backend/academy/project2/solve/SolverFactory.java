@@ -12,4 +12,7 @@ public class SolverFactory {
             case BFS -> new BFSSolver(maze, start, goal);
         };
     }
+
+    private SolverFactory() {
+    }
 }

@@ -14,4 +14,6 @@ public class Main {
         ConsoleInterface consoleInterface = new ConsoleInterface(out, scanner);
         consoleInterface.processUserInteraction();
     }
+
+    private Main() {}
 }

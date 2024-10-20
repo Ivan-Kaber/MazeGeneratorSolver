@@ -7,4 +7,6 @@ public class GeneratorFactory {
             case RECURSIVE_BACKTRACK -> new RecursiveBacktrackGenerator();
         };
     }
+
+    private GeneratorFactory() {}
 }

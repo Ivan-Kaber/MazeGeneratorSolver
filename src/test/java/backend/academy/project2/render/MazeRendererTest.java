@@ -18,8 +18,8 @@ public class MazeRendererTest {
     void setUp() {
         renderer = new MazeRenderer();
         maze = new Maze(5, 5); // Создаем лабиринт размером 5x5 для тестов
-        for (int row = 0; row < Maze.height(); row++) {
-            for (int col = 0; col < Maze.width(); col++) {
+        for (int row = 0; row < maze.height(); row++) {
+            for (int col = 0; col < maze.width(); col++) {
                 maze.setCellType(new Coordinate(row, col), Cell.Type.WALL); // Инициализируем стены
             }
         }
@@ -69,6 +69,7 @@ public class MazeRendererTest {
                           "⬜\uFE0F⬜\uFE0F⬜\uFE0F⬜\uFE0F⬜\uFE0F\n" +
                           "⬜\uFE0F⬜\uFE0F⬜\uFE0F⬜\uFE0F⬜\uFE0F\n" +
                           "⬜\uFE0F⬜\uFE0F⬜\uFE0F⬜\uFE0F⬜\uFE0F\n";
+
         assertEquals(expected, renderer.render(maze, path));
     }
 
