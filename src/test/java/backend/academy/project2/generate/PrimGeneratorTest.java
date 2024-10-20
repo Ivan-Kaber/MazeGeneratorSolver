@@ -20,22 +20,22 @@ class PrimGeneratorTest {
     @Test
     void testGenerateMazeWithMinimumSize() {
         Maze maze = generator.generate(3, 3);
-        assertEquals(3, maze.height());
-        assertEquals(3, maze.width());
+        assertEquals(3, Maze.height());
+        assertEquals(3, Maze.width());
         assertTrue(maze.isPassage(new Coordinate(1, 1)));
     }
 
     @Test
     void testGenerateMazeWithEvenDimensions() {
         Maze maze = generator.generate(4, 4);
-        assertEquals(4, maze.height());
+        assertEquals(4, Maze.height());
     }
 
     @Test
     void testGenerateMazeWithOddDimensions() {
         Maze maze = generator.generate(5, 5);
-        assertEquals(5, maze.height());
-        assertEquals(5, maze.width());
+        assertEquals(5, Maze.height());
+        assertEquals(5, Maze.width());
     }
 
     @Test
@@ -49,8 +49,8 @@ class PrimGeneratorTest {
         int height = 5;
         int width = 5;
         Maze maze = generator.generate(height, width);
-        assertEquals(height, maze.height());
-        assertEquals(width, maze.width());
+        assertEquals(height, Maze.height());
+        assertEquals(width, Maze.width());
         assertEquals(Cell.Type.PASSAGE, maze.getCell(1, 1).type());
     }
 
@@ -60,8 +60,8 @@ class PrimGeneratorTest {
         int passageCount = 0;
         int wallCount = 0;
 
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
+        for (int row = 0; row < Maze.height(); row++) {
+            for (int col = 0; col < Maze.width(); col++) {
                 if (maze.getCell(row, col).type() == Cell.Type.PASSAGE) {
                     passageCount++;
                 } else {

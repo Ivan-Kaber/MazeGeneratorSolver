@@ -3,11 +3,10 @@ package backend.academy.project2.solve.bfs;
 import backend.academy.project2.maze.Cell;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Maze;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

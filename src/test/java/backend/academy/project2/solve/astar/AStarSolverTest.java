@@ -3,11 +3,11 @@ package backend.academy.project2.solve.astar;
 import backend.academy.project2.maze.Cell;
 import backend.academy.project2.maze.Coordinate;
 import backend.academy.project2.maze.Maze;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,8 +19,8 @@ class AStarSolverTest {
     @BeforeEach
     void setUp() {
         maze = new Maze(5, 5);
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
+        for (int row = 0; row < Maze.height(); row++) {
+            for (int col = 0; col < Maze.width(); col++) {
                 maze.setCellType(new Coordinate(row, col), Cell.Type.WALL);
             }
         }

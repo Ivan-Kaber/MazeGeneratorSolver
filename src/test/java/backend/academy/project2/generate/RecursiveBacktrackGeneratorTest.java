@@ -2,11 +2,9 @@ package backend.academy.project2.generate;
 
 import backend.academy.project2.maze.Cell;
 import backend.academy.project2.maze.Coordinate;
-import backend.academy.project2.maze.Direction;
 import backend.academy.project2.maze.Maze;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,15 +20,15 @@ class RecursiveBacktrackGeneratorTest {
     @Test
     void testGenerateMazeWithEvenDimensions() {
         Maze maze = generator.generate(4, 4);
-        assertEquals(5, maze.height());
-        assertEquals(5, maze.width());
+        assertEquals(5, Maze.height());
+        assertEquals(5, Maze.width());
     }
 
     @Test
     void testGenerateMazeWithOddDimensions() {
         Maze maze = generator.generate(5, 5);
-        assertEquals(5, maze.height());
-        assertEquals(5, maze.width());
+        assertEquals(5, Maze.height());
+        assertEquals(5, Maze.width());
     }
 
     @Test
@@ -45,8 +43,8 @@ class RecursiveBacktrackGeneratorTest {
         int passageCount = 0;
         int wallCount = 0;
 
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
+        for (int row = 0; row < Maze.height(); row++) {
+            for (int col = 0; col < Maze.width(); col++) {
                 if (maze.getCell(row, col).type() == Cell.Type.PASSAGE) {
                     passageCount++;
                 } else {
@@ -57,22 +55,4 @@ class RecursiveBacktrackGeneratorTest {
 
         assertTrue(passageCount < wallCount);
     }
-
-    /*@Test
-    void testMazeContainsRandomSurfaces() {
-        Maze maze = generator.generate(7, 7);
-        boolean containsBarrierOrBoost = false;
-
-        for (int row = 0; row < maze.height(); row++) {
-            for (int col = 0; col < maze.width(); col++) {
-                if (maze.getCell(row, col).type() == Cell.Type.BARRIER ||
-                    maze.getCell(row, col).type() == Cell.Type.BOOST) {
-                    containsBarrierOrBoost = true;
-                    break;
-                }
-            }
-        }
-
-        assertTrue(containsBarrierOrBoost);
-    }*/
 }

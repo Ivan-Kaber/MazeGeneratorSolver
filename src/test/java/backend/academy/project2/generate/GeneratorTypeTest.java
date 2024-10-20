@@ -11,7 +11,8 @@ class GeneratorTypeTest {
     @Test
     void testGetById_validId() {
         assertEquals(GeneratorType.PRIM, GeneratorType.getById(1), "При id = 1 должен возвращаться PRIM.");
-        assertEquals(GeneratorType.RECURSIVE_BACKTRACK, GeneratorType.getById(2), "При id = 2 должен возвращаться RECURSIVE_BACKTRACK.");
+        assertEquals(GeneratorType.RECURSIVE_BACKTRACK, GeneratorType.getById(2),
+            "При id = 2 должен возвращаться RECURSIVE_BACKTRACK.");
     }
 
     @Test
