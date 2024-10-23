@@ -22,8 +22,10 @@ public class AStarSolver extends AbstractSolver {
         Map<Coordinate, Node> allNodes = new HashMap<>();
 
         Node startNode = new Node(start, null, 0, heuristic(start, goal));
-        nodePriorityQueue.add(startNode);
-        allNodes.put(start, startNode);
+        if (!maze.isWall(start)) {
+            nodePriorityQueue.add(startNode);
+            allNodes.put(start, startNode);
+        }
 
         while (!nodePriorityQueue.isEmpty()) {
             Node currentNode = nodePriorityQueue.poll();
