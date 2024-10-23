@@ -65,18 +65,17 @@ public class ConsoleLogic {
     public void drawMaze() {
         maze = generator.generate(heightSize, widthSize);
         out.println("\n" + renderer.render(maze));
-        Place.setMazeDimensions(maze.height(), maze.width());
     }
 
     public void selectStartOrGoalPoint(String place, boolean isStart) {
-        if (Place.contains(place)) {
+        if (isValidRange(place)) {
             if (isStart) {
-                start = Place.getById(Integer.parseInt(place));
+                start = new Coordinate(Integer.parseInt(place.split(" ")[0]), Integer.parseInt(place.split(" ")[1]));
             } else {
-                goal = Place.getById(Integer.parseInt(place));
+                goal = new Coordinate(Integer.parseInt(place.split(" ")[0]), Integer.parseInt(place.split(" ")[1]));
             }
         } else {
-            out.print("Вы ввели неверные данные, попробуйте еще раз, введите одну цифру"
+            out.print("Вы ввели неверные данные, попробуйте еще раз, введите координаты точки через пробел"
                       + " - желаемую точку в лабиринте: ");
             selectStartOrGoalPoint(scanner.nextLine(), isStart);
         }
@@ -97,5 +96,16 @@ public class ConsoleLogic {
                       + "попробуйте еще раз, введите одну цифру - желаемый алгоритм: ");
             selectSolver(scanner.nextLine());
         }
+    }
+
+    private boolean isValidRange(String coordinate) {
+        String[] point = coordinate.split(" ");
+        return point.length == 2
+               && StringUtils.isNumeric(point[0])
+               && StringUtils.isNumeric(point[1])
+               && Integer.parseInt(point[0]) >= 1
+               && Integer.parseInt(point[0]) <= heightSize - 1
+               && Integer.parseInt(point[1]) >= 1
+               && Integer.parseInt(point[1]) <= widthSize - 1;
     }
 }

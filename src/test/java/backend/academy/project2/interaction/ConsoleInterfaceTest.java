@@ -29,8 +29,8 @@ class ConsoleInterfaceTest {
             .thenReturn("1")  // Правильный выбор
             .thenReturn("10") // Высота
             .thenReturn("10") // Ширина
-            .thenReturn("1")  // Начальная точка
-            .thenReturn("2")  // Конечная точка
+            .thenReturn("1 1")  // Начальная точка
+            .thenReturn("2 2")  // Конечная точка
             .thenReturn("1"); // Алгоритм поиска пути
 
         consoleInterface.processUserInteraction();
@@ -44,8 +44,8 @@ class ConsoleInterfaceTest {
             .thenReturn("1")  // Алгоритм генерации
             .thenReturn("10") // Высота
             .thenReturn("10") // Ширина
-            .thenReturn("1")  // Начальная точка
-            .thenReturn("2")  // Конечная точка
+            .thenReturn("1 1")  // Начальная точка
+            .thenReturn("2 2")  // Конечная точка
             .thenReturn("1"); // Алгоритм поиска пути
 
         consoleInterface.processUserInteraction();

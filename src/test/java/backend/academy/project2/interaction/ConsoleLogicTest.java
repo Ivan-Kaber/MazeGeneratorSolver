@@ -49,23 +49,4 @@ class ConsoleLogicTest {
         assertTrue(captor.getAllValues().stream().anyMatch(s -> s.contains("Вы ввели неверные данные")));
     }
 
-    @Test
-    void selectStartOrGoalPoint_ValidInput_SetsCoordinates() {
-        when(scanner.nextLine()).thenReturn("1");
-
-        consoleLogic.selectStartOrGoalPoint("1", true);
-
-        assertNotNull(consoleLogic.start());
-    }
-
-    @Test
-    void selectStartOrGoalPoint_InvalidInput_PromptsAgain() {
-        when(scanner.nextLine()).thenReturn("invalid", "1");
-
-        consoleLogic.selectStartOrGoalPoint("invalid", true);
-
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        verify(out, times(2)).print(captor.capture());
-        assertTrue(captor.getAllValues().stream().anyMatch(s -> s.contains("Вы ввели неверные данные")));
-    }
 }

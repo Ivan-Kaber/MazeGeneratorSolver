@@ -46,14 +46,14 @@ public class ConsoleInterface {
 
     private void selectStartAndGoalPoints() {
         selectPoint("начала", true);
-        selectPoint("цели", false);
+        selectPoint("конца", false);
     }
 
     private void selectPoint(String pointType, boolean isStart) {
         out.printf("""
-            %nВыберите точку %s построения пути:%n\
-            %s%n\
-            Введите одну цифру - желаемую точку %s построения пути:\s""", pointType, Place.getOrderView(), pointType);
+                %nВыберите точку %s построения пути:%n\
+                Введите координаты точки %s пути через пробел в формате "строка столбец", например "1 1":\s""",
+            pointType, pointType);
         consoleLogic.selectStartOrGoalPoint(scanner.nextLine(), isStart);
     }
 
